@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Temperature Converter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .box {
+        background-color: #f1f1f1;
+        padding: 20px;
+        border-radius: 4px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+        width: 300px;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="number"] {
+        padding: 5px;
+        font-size: 16px;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+      select {
+        padding: 5px;
+        font-size: 16px;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 10px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #3e8e41;
+      }
+      .result {
+        font-size: 24px;
+        margin-top: 20px;
+      }
+      .degree-symbol {
+        font-size: 18px;
+        vertical-align: middle;
+      }
+      .button-container {
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Temperature Converter</h1>
+
+      <div class="box">
+        <form>
+          <label for="input-temp">Degrees</label>
+          <input type="number" id="input-temp" placeholder="Enter temperature" required>
+
+          <label for="select-from">Degrees</label>
+          <select id="select-from">
+            <option value="celsius">Celsius (°C)</option>
+            <option value="fahrenheit">Fahrenheit (°F)</option>
+          </select>
+
+          <label for="select-to">Result</label>
+          <select id="select-to">
+            <option value="fahrenheit">Fahrenheit (°F)</option>
+            <option value="celsius">Celsius (°C)</option>
+          </select>
+        </form>
+
+        <div class="button-container">
+          <button type="button" onclick="convertTemperature()">Convert</button>
+        </div>
+
+        <div class="result" id="result"></div>
+      </div>
+    </div>
+
+    <script>
+      function convertTemperature() {
+        // Get the user input
+        const temp = document.getElementById("input-temp").value;
+        const from = document.getElementById("select-from").value;
+        const to = document.getElementById("select-to").value;
+
+        // Perform the conversion
+        let result;
+        if (from === "celsius" && to === "fahrenheit") {
+          result = (temp * 9/5) +32;
+} else if (from === "fahrenheit" && to === "celsius") {
+result = (temp - 32) * 5/9;
+} else {
+// No conversion needed
+result = temp;
+}
+    // Display the result
+    const resultElement = document.getElementById("result");
+    resultElement.innerHTML = `${result.toFixed(2)} <span class="degree-symbol">&deg;</span>${to.toUpperCase()}`;
+  }
+</script>
+</body>
+</html>
